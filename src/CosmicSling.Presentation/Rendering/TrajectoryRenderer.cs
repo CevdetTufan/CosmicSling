@@ -1,6 +1,5 @@
-using System.Collections.Generic;
-using SkiaSharp;
 using CosmicSling.Domain.ValueObjects;
+using SkiaSharp;
 
 namespace CosmicSling.Presentation.Rendering;
 
@@ -22,12 +21,11 @@ public class TrajectoryRenderer
             return;
         }
 
-        using var path = new SKPath();
-        path.MoveTo(points[0].X, points[0].Y);
-        for (int i = 1; i < points.Count; i++)
+        for (int i = 0; i < points.Count - 1; i++)
         {
-            path.LineTo(points[i].X, points[i].Y);
+            var p1 = points[i];
+            var p2 = points[i + 1];
+            canvas.DrawLine(p1.X, p1.Y, p2.X, p2.Y, _paint);
         }
-        canvas.DrawPath(path, _paint);
     }
 }
