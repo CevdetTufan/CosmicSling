@@ -9,6 +9,10 @@
 
 > ✨ **Developed collaboratively with AI** using advanced pair-programming to showcase how a rich, 60 FPS 2D game engine can be cleanly decoupled across Domain, Application, Infrastructure, and Presentation layers without sacrificing performance or visual polish.
 
+<p align="center">
+  <img src="docs/gameplay.gif" alt="Cosmic Sling Gameplay Demo" width="750" />
+</p>
+
 ---
 
 ## 🎮 Gameplay & Mechanics
