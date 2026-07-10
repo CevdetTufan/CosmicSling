@@ -2,15 +2,9 @@ using CosmicSling.Domain.ValueObjects;
 
 namespace CosmicSling.Domain.Entities;
 
-public abstract class Entity
+public abstract class Entity(int id, Vector2D initialPosition)
 {
-    public int Id { get; init; }
-    public Vector2D Position { get; set; }
-    public bool IsActive { get; set; } = true;
-
-    protected Entity(int id, Vector2D initialPosition)
-    {
-        Id = id;
-        Position = initialPosition;
-    }
+	public int Id { get; init; } = id;
+	public Vector2D Position { get; set; } = initialPosition;
+	public bool IsActive { get; set; } = true;
 }

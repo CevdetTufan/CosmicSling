@@ -2,15 +2,10 @@ using CosmicSling.Domain.ValueObjects;
 
 namespace CosmicSling.Domain.Entities;
 
-public class Obstacle : Entity
+public class Obstacle(int id, Vector2D position, float radius) : Entity(id, position)
 {
-    public float Radius { get; set; }
-    public GameColor Color { get; set; } = GameColor.NeonPink;
+	public float Radius { get; set; } = radius;
+	public GameColor Color { get; set; } = GameColor.NeonPink;
 
-    public Obstacle(int id, Vector2D position, float radius) : base(id, position)
-    {
-        Radius = radius;
-    }
-
-    public CircleBounds GetBounds() => new(Position, Radius);
+	public CircleBounds GetBounds() => new(Position, Radius);
 }

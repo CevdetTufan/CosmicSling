@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using CosmicSling.Domain.Entities;
 using CosmicSling.Domain.Enums;
 using CosmicSling.Domain.ValueObjects;
@@ -38,9 +37,9 @@ public static class LevelFactory
             Hint: "Gemiyi çekip bırakın. Ortadaki gezegenin kütleçekimini kullanarak portala girin!",
             Ship: ship,
             Portal: portal,
-            CelestialBodies: new[] { planet },
-            Obstacles: new Obstacle[0]
-        );
+            CelestialBodies: [planet],
+			Obstacles: []
+		);
     }
 
     private static LevelDefinition CreateLevel2()
@@ -76,8 +75,8 @@ public static class LevelFactory
             Hint: "İki gezegenin kütleçekim koridorundan süzülüp engeli aşın!",
             Ship: ship,
             Portal: portal,
-            CelestialBodies: new[] { planetTop, planetBottom },
-            Obstacles: new[] { obstacle }
+            CelestialBodies: [planetTop, planetBottom],
+            Obstacles: [obstacle]
         );
     }
 
@@ -122,8 +121,8 @@ public static class LevelFactory
             Hint: "Turuncu alan gemiyi İTER! Pembe kara deliklerin çekimiyle denge kurun.",
             Ship: ship,
             Portal: portal,
-            CelestialBodies: new[] { repulsor, blackHoleTop, blackHoleBottom },
-            Obstacles: new Obstacle[0]
+            CelestialBodies: [repulsor, blackHoleTop, blackHoleBottom],
+            Obstacles: []
         );
     }
 }

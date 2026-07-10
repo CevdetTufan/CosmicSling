@@ -1,13 +1,10 @@
-using System;
-using System.Drawing;
-using System.Windows.Forms;
-using SkiaSharp;
-using SkiaSharp.Views.Desktop;
 using CosmicSling.Application.Services;
 using CosmicSling.Domain.Enums;
 using CosmicSling.Domain.ValueObjects;
 using CosmicSling.Infrastructure.Persistence;
 using CosmicSling.Presentation.Rendering;
+using SkiaSharp;
+using SkiaSharp.Views.Desktop;
 
 namespace CosmicSling.Presentation;
 
@@ -15,7 +12,7 @@ public class GameForm : Form
 {
     private readonly SKControl _skControl;
     private readonly GameSessionService _session = new();
-    private readonly IHighScoreRepository _highScoreRepo = new InMemoryHighScoreRepository();
+    private readonly InMemoryHighScoreRepository _highScoreRepo = new();
 
     private readonly SpaceshipRenderer _shipRenderer = new();
     private readonly CelestialRenderer _celestialRenderer = new();
@@ -24,7 +21,6 @@ public class GameForm : Form
     private readonly TrajectoryRenderer _trajectoryRenderer = new();
     private readonly HudRenderer _hudRenderer = new();
 
-    private readonly System.Windows.Forms.Timer _gameTimer;
     private bool _isAimingDrag;
     private Vector2D _dragStart;
     private Vector2D _dragCurrent;
@@ -53,8 +49,8 @@ public class GameForm : Form
 
         _session.LoadLevel(1);
 
-        _gameTimer = new System.Windows.Forms.Timer { Interval = 16 };
-        _gameTimer.Tick += (s, e) =>
+        var gameTimer = new System.Windows.Forms.Timer { Interval = 16 };
+        gameTimer.Tick += (s, e) =>
         {
             _session.Update(0.016f);
             if (_session.CurrentState == GameState.LevelCompleted)
@@ -63,7 +59,7 @@ public class GameForm : Form
             }
             _skControl.Invalidate();
         };
-        _gameTimer.Start();
+        gameTimer.Start();
     }
 
     private void OnPaintSurface(object? sender, SKPaintSurfaceEventArgs e)

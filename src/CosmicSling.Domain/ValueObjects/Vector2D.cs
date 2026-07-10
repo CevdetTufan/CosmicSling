@@ -1,5 +1,3 @@
-using System;
-
 namespace CosmicSling.Domain.ValueObjects;
 
 public readonly record struct Vector2D(float X, float Y)
@@ -36,5 +34,5 @@ public readonly record struct Vector2D(float X, float Y)
     public static Vector2D operator -(Vector2D v) => new(-v.X, -v.Y);
     public static Vector2D operator *(Vector2D v, float scalar) => new(v.X * scalar, v.Y * scalar);
     public static Vector2D operator *(float scalar, Vector2D v) => new(v.X * scalar, v.Y * scalar);
-    public static Vector2D operator /(Vector2D v, float scalar) => scalar != 0 ? new(v.X / scalar, v.Y / scalar) : Zero;
+    public static Vector2D operator /(Vector2D v, float scalar) => MathF.Abs(scalar) > 1e-6f ? new(v.X / scalar, v.Y / scalar) : Zero;
 }

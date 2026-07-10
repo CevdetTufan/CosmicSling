@@ -1,4 +1,3 @@
-using Xunit;
 using CosmicSling.Application.Commands;
 using CosmicSling.Domain.Entities;
 using CosmicSling.Domain.ValueObjects;

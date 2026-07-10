@@ -11,7 +11,7 @@ public class TrajectoryRenderer
         Color = new SKColor(255, 255, 0, 180),
         StrokeWidth = 2f,
         IsAntialias = true,
-        PathEffect = SKPathEffect.CreateDash(new[] { 6f, 6f }, 0f)
+        PathEffect = SKPathEffect.CreateDash([6f, 6f], 0f)
     };
 
     public void Render(SKCanvas canvas, IReadOnlyList<Vector2D> points)
