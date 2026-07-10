@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/CosmicSling.Application/CosmicSling.Application.csproj" />
+    <Project Path="src/CosmicSling.Domain/CosmicSling.Domain.csproj" />
+    <Project Path="src/CosmicSling.Infrastructure/CosmicSling.Infrastructure.csproj" />
+    <Project Path="src/CosmicSling.Presentation/CosmicSling.Presentation.csproj" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/CosmicSling.Tests/CosmicSling.Tests.csproj" />
+  </Folder>
+</Solution>
