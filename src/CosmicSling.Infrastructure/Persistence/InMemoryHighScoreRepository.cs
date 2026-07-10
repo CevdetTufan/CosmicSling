@@ -1,10 +1,8 @@
-using System.Collections.Generic;
-
 namespace CosmicSling.Infrastructure.Persistence;
 
 public class InMemoryHighScoreRepository : IHighScoreRepository
 {
-    private readonly Dictionary<int, int> _bestAttempts = new();
+    private readonly Dictionary<int, int> _bestAttempts = [];
 
     public void SaveBestAttempts(int levelIndex, int attempts)
     {

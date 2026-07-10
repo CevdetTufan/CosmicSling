@@ -1,4 +1,3 @@
-using Xunit;
 using CosmicSling.Application.Strategies;
 using CosmicSling.Domain.Entities;
 using CosmicSling.Domain.Enums;

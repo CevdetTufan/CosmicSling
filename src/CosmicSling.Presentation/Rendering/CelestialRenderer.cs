@@ -12,14 +12,14 @@ public class CelestialRenderer : IEntityRenderer<CelestialBody>
     {
         var baseColor = new SKColor(body.Color.R, body.Color.G, body.Color.B, body.Color.A);
 
-        // 1. Draw gravitational field zone
+        // 1. Draw gravitational field zone (using IDE0300 C# collection expression [8f, 6f])
         using var gravityPaint = new SKPaint
         {
             Style = SKPaintStyle.Stroke,
             Color = baseColor.WithAlpha(50),
             StrokeWidth = 1.5f,
             IsAntialias = true,
-            PathEffect = SKPathEffect.CreateDash(new[] { 8f, 6f }, 0f)
+            PathEffect = SKPathEffect.CreateDash([8f, 6f], 0f)
         };
         canvas.DrawCircle(body.Position.X, body.Position.Y, body.GravityRadius, gravityPaint);
 

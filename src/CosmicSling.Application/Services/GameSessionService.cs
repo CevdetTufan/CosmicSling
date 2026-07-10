@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using CosmicSling.Application.Commands;
 using CosmicSling.Application.Levels;
 using CosmicSling.Domain.Enums;
@@ -10,10 +9,9 @@ namespace CosmicSling.Application.Services;
 public class GameSessionService
 {
     private readonly PhysicsEngineService _physicsEngine = new();
-    private readonly CollisionDetectionService _collisionService = new();
     private readonly TrajectoryPredictor _trajectoryPredictor = new();
     private readonly Stack<IGameCommand> _commandHistory = new();
-    private readonly List<IGameEventListener> _listeners = new();
+    private readonly List<IGameEventListener> _listeners = [];
 
     public LevelDefinition CurrentLevel { get; private set; } = null!;
     public GameState CurrentState { get; private set; } = GameState.Aiming;
@@ -85,7 +83,7 @@ public class GameSessionService
 
         _physicsEngine.Step(CurrentLevel.Ship, CurrentLevel.CelestialBodies, deltaTime);
 
-        var collisionResult = _collisionService.CheckCollisions(CurrentLevel.Ship, CurrentLevel);
+        var collisionResult = CollisionDetectionService.CheckCollisions(CurrentLevel.Ship, CurrentLevel);
 
         switch (collisionResult)
         {

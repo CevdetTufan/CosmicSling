@@ -1,4 +1,3 @@
-using Xunit;
 using CosmicSling.Application.Levels;
 using CosmicSling.Application.Services;
 
@@ -12,8 +11,7 @@ public class CollisionDetectionTests
         var level = LevelFactory.CreateLevel(1);
         level.Ship.Position = level.Portal.Position; // Move ship inside portal
 
-        var service = new CollisionDetectionService();
-        var result = service.CheckCollisions(level.Ship, level);
+        var result = CollisionDetectionService.CheckCollisions(level.Ship, level);
 
         Assert.Equal(CollisionResult.PortalReached, result);
     }
@@ -24,8 +22,7 @@ public class CollisionDetectionTests
         var level = LevelFactory.CreateLevel(1);
         level.Ship.Position = level.CelestialBodies[0].Position; // Move ship inside planet core
 
-        var service = new CollisionDetectionService();
-        var result = service.CheckCollisions(level.Ship, level);
+        var result = CollisionDetectionService.CheckCollisions(level.Ship, level);
 
         Assert.Equal(CollisionResult.PlanetImpact, result);
     }

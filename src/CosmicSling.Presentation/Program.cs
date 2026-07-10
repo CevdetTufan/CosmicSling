@@ -1,5 +1,3 @@
-using System;
-
 namespace CosmicSling.Presentation;
 
 internal static class Program

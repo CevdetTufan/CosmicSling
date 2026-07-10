@@ -1,4 +1,3 @@
-using Xunit;
 using CosmicSling.Domain.ValueObjects;
 
 namespace CosmicSling.Tests;

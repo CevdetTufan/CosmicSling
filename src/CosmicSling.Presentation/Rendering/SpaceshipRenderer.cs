@@ -29,16 +29,15 @@ public class SpaceshipRenderer : IEntityRenderer<Spaceship>
 
     public void Render(SKCanvas canvas, Spaceship ship)
     {
-        // 1. Draw glowing trail
+        // 1. Draw glowing trail using non-deprecated DrawLine segments
         if (ship.TrailPoints.Count > 1)
         {
-            using var path = new SKPath();
-            path.MoveTo(ship.TrailPoints[0].X, ship.TrailPoints[0].Y);
-            for (int i = 1; i < ship.TrailPoints.Count; i++)
+            for (int i = 0; i < ship.TrailPoints.Count - 1; i++)
             {
-                path.LineTo(ship.TrailPoints[i].X, ship.TrailPoints[i].Y);
+                var p1 = ship.TrailPoints[i];
+                var p2 = ship.TrailPoints[i + 1];
+                canvas.DrawLine(p1.X, p1.Y, p2.X, p2.Y, _trailPaint);
             }
-            canvas.DrawPath(path, _trailPaint);
         }
 
         // 2. Draw outer glow

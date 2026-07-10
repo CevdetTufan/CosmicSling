@@ -1,6 +1,6 @@
+using System.Linq;
 using CosmicSling.Application.Levels;
 using CosmicSling.Domain.Entities;
-using CosmicSling.Domain.ValueObjects;
 
 namespace CosmicSling.Application.Services;
 
@@ -13,9 +13,9 @@ public enum CollisionResult
     OutOfBounds
 }
 
-public class CollisionDetectionService
+public static class CollisionDetectionService
 {
-    public CollisionResult CheckCollisions(Spaceship ship, LevelDefinition level, float screenWidth = 1200f, float screenHeight = 800f)
+    public static CollisionResult CheckCollisions(Spaceship ship, LevelDefinition level, float screenWidth = 1200f, float screenHeight = 800f)
     {
         if (!ship.IsActive)
         {
@@ -31,21 +31,15 @@ public class CollisionDetectionService
         }
 
         // 2. Check Planet collision (crashing into planet core)
-        foreach (var body in level.CelestialBodies)
+        if (level.CelestialBodies.Any(body => shipBounds.Intersects(body.GetBodyBounds())))
         {
-            if (shipBounds.Intersects(body.GetBodyBounds()))
-            {
-                return CollisionResult.PlanetImpact;
-            }
+            return CollisionResult.PlanetImpact;
         }
 
         // 3. Check Obstacle collision
-        foreach (var obstacle in level.Obstacles)
+        if (level.Obstacles.Any(obstacle => shipBounds.Intersects(obstacle.GetBounds())))
         {
-            if (shipBounds.Intersects(obstacle.GetBounds()))
-            {
-                return CollisionResult.ObstacleImpact;
-            }
+            return CollisionResult.ObstacleImpact;
         }
 
         // 4. Check Out of Bounds (> 400px outside screen)
